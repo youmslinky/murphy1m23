@@ -14,6 +14,7 @@
 #include "Test\Test.h"
 #include "Pressure\Pressure.h"
 #include "Temperature\Temperature.h"
+#include "LED\LED.h"
 #include <stdint.h>
 #include <inttypes.h>
 #include <asf.h>
