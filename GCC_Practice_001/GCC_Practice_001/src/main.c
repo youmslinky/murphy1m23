@@ -39,9 +39,15 @@ int main (void)
 	sysclk_init();
 	board_init();
 	
+	//enable timer counter on portE
+	sysclk_enable_peripheral_clock(&TCE0);		
+	sysclk_enable_module(SYSCLK_PORT_E,SYSCLK_HIRES);
+	
+	
 	#ifdef DEBUG_LED
 		printf("ASDADA");
 	#endif
+	flashLED(1);
 	
 	while (1)
 	{
