@@ -27,3 +27,22 @@ void ledRotation(uint32_t iDelay )
 	}
 	
 }
+
+void ledBounce4(uint32_t animationDelay)
+{
+	uint8_t ledPattern = 1<<4;
+	for(int i=0;i<3;i++)
+	{
+		PORTE.OUT = ~ledPattern;
+		ledPattern <<= 1;
+		delay_ms(animationDelay);
+	}
+	ledPattern = 1<<7;
+	for(int i=0;i<3;i++)
+	{
+		PORTE.OUT = ~ledPattern;
+		ledPattern >>= 1;
+		delay_ms(animationDelay);
+	}
+	PORTE.OUT = ~0;
+}

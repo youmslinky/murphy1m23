@@ -12,5 +12,6 @@
 #define TEST_H_
 
 void ledRotation(uint32_t iDelay );
+void ledBounce4(uint32_t animationDelay);
 
 #endif /* TEST_H_ */
