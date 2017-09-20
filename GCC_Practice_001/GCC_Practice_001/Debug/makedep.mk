@@ -12,6 +12,8 @@ src\Drivers\Altitude\Altitude.c
 
 src\Drivers\Data\Data.c
 
+src\Drivers\LED_new\LED.c
+
 src\Drivers\Pressure\Pressure.c
 
 src\Drivers\Temperature\Temperature.c
@@ -43,6 +45,8 @@ src\ASF\xmega\drivers\cpu\ccp.s
 src\ASF\common\services\ioport\xmega\ioport_compat.c
 
 src\ASF\xmega\boards\xmega_a1_xplained\init.c
+
+src\Drivers\Usart\Usart.c
 
 src\main.c
 

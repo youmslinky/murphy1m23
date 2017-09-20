@@ -77,6 +77,8 @@ SUBDIRS :=  \
 ../src/Drivers \
 ../src/Drivers/Altitude \
 ../src/Drivers/Data \
+../src/Drivers/LED_new \
+../src/Drivers/Usart \
 ../src/Drivers/Test \
 ../src/Drivers/Pressure \
 ../src/Drivers/Temperature/
@@ -89,6 +91,7 @@ C_SRCS +=  \
 ../src/ASF/xmega/drivers/usart/usart.c \
 ../src/Drivers/Altitude/Altitude.c \
 ../src/Drivers/Data/Data.c \
+../src/Drivers/LED_new/LED.c \
 ../src/Drivers/Pressure/Pressure.c \
 ../src/Drivers/Temperature/Temperature.c \
 ../src/Drivers/Test/Test.c \
@@ -103,6 +106,7 @@ C_SRCS +=  \
 ../src/ASF/xmega/drivers/tc/tc.c \
 ../src/ASF/common/services/ioport/xmega/ioport_compat.c \
 ../src/ASF/xmega/boards/xmega_a1_xplained/init.c \
+../src/Drivers/Usart/Usart.c \
 ../src/main.c
 
 
@@ -120,6 +124,7 @@ src/ASF/xmega/drivers/adc/adc.o \
 src/ASF/xmega/drivers/usart/usart.o \
 src/Drivers/Altitude/Altitude.o \
 src/Drivers/Data/Data.o \
+src/Drivers/LED_new/LED.o \
 src/Drivers/Pressure/Pressure.o \
 src/Drivers/Temperature/Temperature.o \
 src/Drivers/Test/Test.o \
@@ -136,6 +141,7 @@ src/ASF/xmega/drivers/nvm/nvm_asm.o \
 src/ASF/xmega/drivers/cpu/ccp.o \
 src/ASF/common/services/ioport/xmega/ioport_compat.o \
 src/ASF/xmega/boards/xmega_a1_xplained/init.o \
+src/Drivers/Usart/Usart.o \
 src/main.o
 
 OBJS_AS_ARGS +=  \
@@ -144,6 +150,7 @@ src/ASF/xmega/drivers/adc/adc.o \
 src/ASF/xmega/drivers/usart/usart.o \
 src/Drivers/Altitude/Altitude.o \
 src/Drivers/Data/Data.o \
+src/Drivers/LED_new/LED.o \
 src/Drivers/Pressure/Pressure.o \
 src/Drivers/Temperature/Temperature.o \
 src/Drivers/Test/Test.o \
@@ -160,6 +167,7 @@ src/ASF/xmega/drivers/nvm/nvm_asm.o \
 src/ASF/xmega/drivers/cpu/ccp.o \
 src/ASF/common/services/ioport/xmega/ioport_compat.o \
 src/ASF/xmega/boards/xmega_a1_xplained/init.o \
+src/Drivers/Usart/Usart.o \
 src/main.o
 
 C_DEPS +=  \
@@ -168,6 +176,7 @@ src/ASF/xmega/drivers/adc/adc.d \
 src/ASF/xmega/drivers/usart/usart.d \
 src/Drivers/Altitude/Altitude.d \
 src/Drivers/Data/Data.d \
+src/Drivers/LED_new/LED.d \
 src/Drivers/Pressure/Pressure.d \
 src/Drivers/Temperature/Temperature.d \
 src/Drivers/Test/Test.d \
@@ -184,6 +193,7 @@ src/ASF/xmega/drivers/nvm/nvm_asm.d \
 src/ASF/xmega/drivers/cpu/ccp.d \
 src/ASF/common/services/ioport/xmega/ioport_compat.d \
 src/ASF/xmega/boards/xmega_a1_xplained/init.d \
+src/Drivers/Usart/Usart.d \
 src/main.d
 
 C_DEPS_AS_ARGS +=  \
@@ -192,6 +202,7 @@ src/ASF/xmega/drivers/adc/adc.d \
 src/ASF/xmega/drivers/usart/usart.d \
 src/Drivers/Altitude/Altitude.d \
 src/Drivers/Data/Data.d \
+src/Drivers/LED_new/LED.d \
 src/Drivers/Pressure/Pressure.d \
 src/Drivers/Temperature/Temperature.d \
 src/Drivers/Test/Test.d \
@@ -208,6 +219,7 @@ src/ASF/xmega/drivers/nvm/nvm_asm.d \
 src/ASF/xmega/drivers/cpu/ccp.d \
 src/ASF/common/services/ioport/xmega/ioport_compat.d \
 src/ASF/xmega/boards/xmega_a1_xplained/init.d \
+src/Drivers/Usart/Usart.d \
 src/main.d
 
 OUTPUT_FILE_PATH +=GCC_Practice_001.elf
@@ -224,6 +236,10 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
+
+
 
 
 
@@ -294,6 +310,13 @@ src/Drivers/Altitude/%.o: ../src/Drivers/Altitude/%.c
 	
 
 src/Drivers/Data/%.o: ../src/Drivers/Data/%.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 4.9.2
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -DDEBUG -DIOPORT_XMEGA_COMPAT -DBOARD=XMEGA_A1_XPLAINED  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\XMEGAA_DFP\1.0.36\include" -I"../common/applications/user_application/atxmega128a1_xmega_a1_xplained/config" -I"../src/ASF/xmega/utils" -I"../src/ASF/xmega/boards/xmega_a1_xplained" -I"../src/ASF/common/boards" -I"../src/ASF/xmega/boards" -I"../src/config" -I"../src/ASF/xmega/utils/preprocessor" -I"../src/ASF/common/utils" -I"../src/ASF/common/services/ioport" -I"../src" -I"../src/ASF/common/services/gpio" -I"../src/ASF/xmega/drivers/cpu" -I"../src/ASF/xmega/drivers/nvm" -I"../src/ASF/xmega/drivers/pmic" -I"../src/ASF/xmega/drivers/rtc" -I"../src/ASF/xmega/drivers/sleep" -I"../src/ASF/xmega/drivers/spi" -I"../src/ASF/xmega/drivers/tc" -I"../src/ASF/common/services/clock" -I"../src/ASF/common/services/delay" -I"../src/ASF/common/services/serial/xmega_usart" -I"../src/ASF/common/services/serial" -I"../src/ASF/common/services/sleepmgr" -I"../src/ASF/common/utils/stdio/stdio_serial" -I"../src/ASF/xmega/drivers/adc" -I"../src/ASF/xmega/drivers/usart"  -O1 -fdata-sections -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g3 -Wall -mmcu=atxmega128a1 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\XMEGAA_DFP\1.0.36\gcc\dev\atxmega128a1" -c -std=gnu99 -fno-strict-aliasing -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -mrelax -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+src/Drivers/LED_new/%.o: ../src/Drivers/LED_new/%.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 4.9.2
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -DDEBUG -DIOPORT_XMEGA_COMPAT -DBOARD=XMEGA_A1_XPLAINED  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\XMEGAA_DFP\1.0.36\include" -I"../common/applications/user_application/atxmega128a1_xmega_a1_xplained/config" -I"../src/ASF/xmega/utils" -I"../src/ASF/xmega/boards/xmega_a1_xplained" -I"../src/ASF/common/boards" -I"../src/ASF/xmega/boards" -I"../src/config" -I"../src/ASF/xmega/utils/preprocessor" -I"../src/ASF/common/utils" -I"../src/ASF/common/services/ioport" -I"../src" -I"../src/ASF/common/services/gpio" -I"../src/ASF/xmega/drivers/cpu" -I"../src/ASF/xmega/drivers/nvm" -I"../src/ASF/xmega/drivers/pmic" -I"../src/ASF/xmega/drivers/rtc" -I"../src/ASF/xmega/drivers/sleep" -I"../src/ASF/xmega/drivers/spi" -I"../src/ASF/xmega/drivers/tc" -I"../src/ASF/common/services/clock" -I"../src/ASF/common/services/delay" -I"../src/ASF/common/services/serial/xmega_usart" -I"../src/ASF/common/services/serial" -I"../src/ASF/common/services/sleepmgr" -I"../src/ASF/common/utils/stdio/stdio_serial" -I"../src/ASF/xmega/drivers/adc" -I"../src/ASF/xmega/drivers/usart"  -O1 -fdata-sections -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g3 -Wall -mmcu=atxmega128a1 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\XMEGAA_DFP\1.0.36\gcc\dev\atxmega128a1" -c -std=gnu99 -fno-strict-aliasing -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -mrelax -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
@@ -385,6 +408,13 @@ src/ASF/common/services/ioport/xmega/%.o: ../src/ASF/common/services/ioport/xmeg
 	
 
 src/ASF/xmega/boards/xmega_a1_xplained/%.o: ../src/ASF/xmega/boards/xmega_a1_xplained/%.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 4.9.2
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -DDEBUG -DIOPORT_XMEGA_COMPAT -DBOARD=XMEGA_A1_XPLAINED  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\XMEGAA_DFP\1.0.36\include" -I"../common/applications/user_application/atxmega128a1_xmega_a1_xplained/config" -I"../src/ASF/xmega/utils" -I"../src/ASF/xmega/boards/xmega_a1_xplained" -I"../src/ASF/common/boards" -I"../src/ASF/xmega/boards" -I"../src/config" -I"../src/ASF/xmega/utils/preprocessor" -I"../src/ASF/common/utils" -I"../src/ASF/common/services/ioport" -I"../src" -I"../src/ASF/common/services/gpio" -I"../src/ASF/xmega/drivers/cpu" -I"../src/ASF/xmega/drivers/nvm" -I"../src/ASF/xmega/drivers/pmic" -I"../src/ASF/xmega/drivers/rtc" -I"../src/ASF/xmega/drivers/sleep" -I"../src/ASF/xmega/drivers/spi" -I"../src/ASF/xmega/drivers/tc" -I"../src/ASF/common/services/clock" -I"../src/ASF/common/services/delay" -I"../src/ASF/common/services/serial/xmega_usart" -I"../src/ASF/common/services/serial" -I"../src/ASF/common/services/sleepmgr" -I"../src/ASF/common/utils/stdio/stdio_serial" -I"../src/ASF/xmega/drivers/adc" -I"../src/ASF/xmega/drivers/usart"  -O1 -fdata-sections -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g3 -Wall -mmcu=atxmega128a1 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\XMEGAA_DFP\1.0.36\gcc\dev\atxmega128a1" -c -std=gnu99 -fno-strict-aliasing -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -mrelax -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+src/Drivers/Usart/%.o: ../src/Drivers/Usart/%.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 4.9.2
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -DDEBUG -DIOPORT_XMEGA_COMPAT -DBOARD=XMEGA_A1_XPLAINED  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\XMEGAA_DFP\1.0.36\include" -I"../common/applications/user_application/atxmega128a1_xmega_a1_xplained/config" -I"../src/ASF/xmega/utils" -I"../src/ASF/xmega/boards/xmega_a1_xplained" -I"../src/ASF/common/boards" -I"../src/ASF/xmega/boards" -I"../src/config" -I"../src/ASF/xmega/utils/preprocessor" -I"../src/ASF/common/utils" -I"../src/ASF/common/services/ioport" -I"../src" -I"../src/ASF/common/services/gpio" -I"../src/ASF/xmega/drivers/cpu" -I"../src/ASF/xmega/drivers/nvm" -I"../src/ASF/xmega/drivers/pmic" -I"../src/ASF/xmega/drivers/rtc" -I"../src/ASF/xmega/drivers/sleep" -I"../src/ASF/xmega/drivers/spi" -I"../src/ASF/xmega/drivers/tc" -I"../src/ASF/common/services/clock" -I"../src/ASF/common/services/delay" -I"../src/ASF/common/services/serial/xmega_usart" -I"../src/ASF/common/services/serial" -I"../src/ASF/common/services/sleepmgr" -I"../src/ASF/common/utils/stdio/stdio_serial" -I"../src/ASF/xmega/drivers/adc" -I"../src/ASF/xmega/drivers/usart"  -O1 -fdata-sections -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g3 -Wall -mmcu=atxmega128a1 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\XMEGAA_DFP\1.0.36\gcc\dev\atxmega128a1" -c -std=gnu99 -fno-strict-aliasing -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -mrelax -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
