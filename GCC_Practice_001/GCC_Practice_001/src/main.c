@@ -33,26 +33,49 @@
 
 #define LED_ON PORTE.OUT = 0b00000000;
 #define DEBUG_LED
+//#define DEBUG_USART
 
 int main (void)
 {
 	sysclk_init();
 	board_init();
 	
-	//enable timer counter on portE
-	sysclk_enable_peripheral_clock(&TCE0);		
-	sysclk_enable_module(SYSCLK_PORT_E,SYSCLK_HIRES);
+	initLED();
+
+	init_USART();
 	
-	
-	#ifdef DEBUG_LED
-		printf("ASDADA");
+	//nvm_eeprom_write_byte(0,55);
+	#ifdef DEBUG_USART
+	while(1)
+	{
+		printf("eeprom at address 0: %i  \n",nvm_eeprom_read_byte(0));
+		delay_ms(2000);
+	}
 	#endif
-	flashLED(1);
 	
+
+	#ifdef DEBUG_LED
 	while (1)
 	{
-		ledRotation(256);
+		for(int i=0;i<4;i++)
+		{
+			PORTE.OUT = ~i<<4;
+			flashLED(i);
+			for(int j=0;j<10;j++)
+			{
+				PORTE.OUT ^= 1<<7;
+				delay_s(1);
+			}
+		}
+		offLED();
+		delay_s(5);
 	}
+	#endif
+
 	
+	while(1)
+	{
+		uint8_t flightState = nvm_eeprom_read_byte(0);
+	}
 
 }
