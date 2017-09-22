@@ -14,6 +14,7 @@
 
 void initLED(void);
 void flashLED(int flightState);
+void manualFlashLED(float frequency, float dutyCycle);
 void offLED(void);
 
 #endif /* LED_H_ */

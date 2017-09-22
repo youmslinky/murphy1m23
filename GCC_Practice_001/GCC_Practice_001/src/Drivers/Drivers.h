@@ -15,7 +15,7 @@
 #include "Pressure\Pressure.h"
 #include "Temperature\Temperature.h"
 #include "LED_new\LED.h"
-#include "Usart\Usart.h"
+#include "USART\USART.h"
 #include <stdint.h>
 #include <inttypes.h>
 #include <asf.h>
