@@ -46,7 +46,7 @@ src\ASF\common\services\ioport\xmega\ioport_compat.c
 
 src\ASF\xmega\boards\xmega_a1_xplained\init.c
 
-src\Drivers\Usart\Usart.c
+src\Drivers\USART\USART.c
 
 src\main.c
 
